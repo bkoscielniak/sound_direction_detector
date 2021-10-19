@@ -1,0 +1,13 @@
+# Kconfig - application configuration options
+
+#
+# Copyright (c) 2021 Bartosz Kościelniak <kostek233@gmail.com>
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+source "Kconfig"
+
+menu "Application options"
+
+endmenu
