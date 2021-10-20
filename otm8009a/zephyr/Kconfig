@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config OTM8009A
+	bool "Enable support for the OTM8009A"

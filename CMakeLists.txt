@@ -1,6 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# add needed extra modules (out of Zephyr)
+list(APPEND ZEPHYR_EXTRA_MODULES
+  ${CMAKE_CURRENT_SOURCE_DIR}/adv7533
+  ${CMAKE_CURRENT_SOURCE_DIR}/fonts
+  ${CMAKE_CURRENT_SOURCE_DIR}/otm8009a
+  ${CMAKE_CURRENT_SOURCE_DIR}/stm32f769i_discovery
+  )
+
 cmake_minimum_required(VERSION 3.20.0)
 
-#default board and board's path
+#default board
 set(BOARD stm32f769i_disco)
 
 #resolve project version

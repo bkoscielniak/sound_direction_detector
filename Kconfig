@@ -6,8 +6,20 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-source "Kconfig"
+mainmenu "SOUND_DIRECTION_DETECTOR"
 
-menu "Application options"
+source "Kconfig.zephyr"
 
-endmenu
+config SOUND_DIRECTION_DETECTOR_STM32
+	default y
+	bool "Enable needed STM32 modules"
+	select USE_STM32_HAL_CORTEX
+	select USE_STM32_HAL_DMA
+	select USE_STM32_HAL_DMA2D
+	select USE_STM32_HAL_DSI
+	select USE_STM32_HAL_GPIO
+	select USE_STM32_HAL_LTDC
+	select USE_STM32_HAL_LTDC_EX
+	select USE_STM32_HAL_RCC_EX
+	select USE_STM32_HAL_SDRAM
+	select USE_STM32_LL_FMC

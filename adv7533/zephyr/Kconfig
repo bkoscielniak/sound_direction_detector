@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config ADV7533
+	bool "Enable support for the ADV7533"

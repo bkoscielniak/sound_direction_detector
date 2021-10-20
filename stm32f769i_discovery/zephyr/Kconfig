@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config STM32F769I_DISCOVERY
+	bool "Enable support for the STM32F769I Discovery peripherals"
