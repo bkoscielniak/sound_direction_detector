@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config STM32_PDM
+	bool "Enable support for the STM32 PDM Filter"

@@ -7,29 +7,39 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics International N.V.
+  * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
+  * Redistribution and use in source and binary forms, with or without
+  * modification, are permitted, provided that the following conditions are met:
   *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * 1. Redistribution of source code must retain the above copyright notice,
+  *    this list of conditions and the following disclaimer.
+  * 2. Redistributions in binary form must reproduce the above copyright notice,
+  *    this list of conditions and the following disclaimer in the documentation
+  *    and/or other materials provided with the distribution.
+  * 3. Neither the name of STMicroelectronics nor the names of other
+  *    contributors to this software may be used to endorse or promote products
+  *    derived from this software without specific written permission.
+  * 4. This software, including modifications and/or derivative works of this
+  *    software, must execute solely and exclusively on microcontroller or
+  *    microprocessor devices manufactured by or for STMicroelectronics.
+  * 5. Redistribution and use of this software other than as permitted under
+  *    this license is void and will automatically terminate your rights under
+  *    this license.
+  *
+  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
+  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
+  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
+  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
+  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
   */
@@ -71,6 +81,16 @@
   * @{
   */
 
+/** @defgroup BSP_Audio_Out_Option BSP Audio Out Option
+  * @{
+  */
+#define BSP_AUDIO_OUT_CIRCULARMODE      ((uint32_t)0x00000001) /* BUFFER CIRCULAR MODE */
+#define BSP_AUDIO_OUT_NORMALMODE        ((uint32_t)0x00000002) /* BUFFER NORMAL MODE   */
+#define BSP_AUDIO_OUT_STEREOMODE        ((uint32_t)0x00000004) /* STEREO MODE          */
+#define BSP_AUDIO_OUT_MONOMODE          ((uint32_t)0x00000008) /* MONO MODE            */
+/**
+  * @}
+  */
 /** @defgroup BSP_Audio_Sample_Rate BSP Audio Sample Rate
   * @{
   */
@@ -130,34 +150,12 @@
 
 #define AUDIO_OUT_SAIx_DMAx_IRQHandler           DMA2_Stream1_IRQHandler
 
-/* Select the interrupt preemption priority and subpriority for the DMA interrupt */
-#define AUDIO_OUT_IRQ_PREPRIO                    ((uint32_t)0x0E)
+/* Select the interrupt preemption priority for the DMA interrupt */
+#define AUDIO_OUT_IRQ_PREPRIO                ((uint32_t)0x05)   /* Select the preemption priority level(0 is the highest) */
 
 /*------------------------------------------------------------------------------
                         AUDIO IN CONFIGURATION
 ------------------------------------------------------------------------------*/
-/* SAI peripheral configuration defines */
-#define AUDIO_IN_SAIx                           SAI1_Block_B
-#define AUDIO_IN_SAIx_CLK_ENABLE()              __HAL_RCC_SAI1_CLK_ENABLE()
-#define AUDIO_IN_SAIx_CLK_DISABLE()             __HAL_RCC_SAI1_CLK_DISABLE()
-#define AUDIO_IN_SAIx_AF                        GPIO_AF6_SAI1
-#define AUDIO_IN_SAIx_SD_ENABLE()               __HAL_RCC_GPIOE_CLK_ENABLE()
-#define AUDIO_IN_SAIx_SD_GPIO_PORT              GPIOE
-#define AUDIO_IN_SAIx_SD_PIN                    GPIO_PIN_3
-
-/* SAI DMA Stream definitions */
-#define AUDIO_IN_SAIx_DMAx_CLK_ENABLE()         __HAL_RCC_DMA2_CLK_ENABLE()
-#define AUDIO_IN_SAIx_DMAx_STREAM               DMA2_Stream4
-#define AUDIO_IN_SAIx_DMAx_CHANNEL              DMA_CHANNEL_1
-#define AUDIO_IN_SAIx_DMAx_IRQ                  DMA2_Stream4_IRQn
-#define AUDIO_IN_SAIx_DMAx_PERIPH_DATA_SIZE     DMA_PDATAALIGN_HALFWORD
-#define AUDIO_IN_SAIx_DMAx_MEM_DATA_SIZE        DMA_MDATAALIGN_HALFWORD
-
-#define AUDIO_IN_INT_GPIO_ENABLE()               __HAL_RCC_GPIOJ_CLK_ENABLE()
-#define AUDIO_IN_INT_GPIO_PORT                   GPIOJ
-#define AUDIO_IN_INT_GPIO_PIN                    GPIO_PIN_12
-#define AUDIO_IN_INT_IRQ                         EXTI15_10_IRQn
-
 /* DFSDM Configuration defines */
 #define AUDIO_DFSDMx_TOP_RIGHT_CHANNEL                  DFSDM_CHANNEL_0
 #define AUDIO_DFSDMx_TOP_LEFT_CHANNEL                   DFSDM_CHANNEL_1
@@ -169,7 +167,7 @@
 #define AUDIO_DFSDMx_BUTTOM_LEFT_FILTER                 DFSDM1_Filter2
 #define AUDIO_DFSDMx_BUTTOM_RIGHT_FILTER                DFSDM1_Filter3
 
-#define AUDIO_DFSDMx_CLK_ENABLE()                       __HAL_RCC_DFSDM1_CLK_ENABLE()
+#define AUDIO_DFSDMx_CLK_ENABLE()                       __HAL_RCC_DFSDM_CLK_ENABLE()
 #define AUDIO_DFSDMx_CKOUT_PIN                          GPIO_PIN_3
 #define AUDIO_DFSDMx_CKOUT_DMIC_GPIO_PORT               GPIOD
 #define AUDIO_DFSDMx_CKOUT_DMIC_GPIO_CLK_ENABLE()       __HAL_RCC_GPIOD_CLK_ENABLE()
@@ -186,9 +184,9 @@
 #define AUDIO_DFSDMx_DMAx_PERIPH_DATA_SIZE              DMA_PDATAALIGN_WORD
 #define AUDIO_DFSDMx_DMAx_MEM_DATA_SIZE                 DMA_MDATAALIGN_WORD
 
-#define AUDIO_DFSDMx_DMAx_TOP_LEFT_STREAM               DMA2_Stream0
-#define AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQ                  DMA2_Stream0_IRQn
-#define AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQHandler           DMA2_Stream0_IRQHandler
+#define AUDIO_DFSDMx_DMAx_TOP_LEFT_STREAM               DMA2_Stream4
+#define AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQ                  DMA2_Stream4_IRQn
+#define AUDIO_DFSDMx_DMAx_TOP_LEFT_IRQHandler           DMA2_Stream4_IRQHandler
 
 #define AUDIO_DFSDMx_DMAx_TOP_RIGHT_STREAM              DMA2_Stream5
 #define AUDIO_DFSDMx_DMAx_TOP_RIGHT_IRQ                 DMA2_Stream5_IRQn
@@ -202,7 +200,7 @@
 #define AUDIO_DFSDMx_DMAx_BUTTOM_RIGHT_IRQ              DMA2_Stream7_IRQn
 #define AUDIO_DFSDMx_DMAx_BUTTOM_RIGHT_IRQHandler       DMA2_Stream7_IRQHandler
 
-/* Select the interrupt preemption priority and subpriority for the DMA interrupt */
+/* Select the interrupt preemption priority and subpriority for the IT/DMA interrupt */
 #define AUDIO_IN_IRQ_PREPRIO                ((uint32_t)0x0F)
 
 
@@ -217,28 +215,36 @@
 #define AUDIO_ERROR                         ((uint8_t)1)
 #define AUDIO_TIMEOUT                       ((uint8_t)2)
 
-/* Audio In default settings */
-#define DEFAULT_AUDIO_IN_FREQ               BSP_AUDIO_FREQUENCY_16K
+/* AudioFreq * DataSize (2 bytes) * NumChannels (Stereo: 2) */
+#define DEFAULT_AUDIO_IN_FREQ               I2S_AUDIOFREQ_16K
 #define DEFAULT_AUDIO_IN_BIT_RESOLUTION     ((uint8_t)16)
-#define DEFAULT_AUDIO_IN_CHANNEL_NBR        ((uint8_t)2)
+#define DEFAULT_AUDIO_IN_CHANNEL_NBR        ((uint8_t)4)
 #define DEFAULT_AUDIO_IN_VOLUME             ((uint16_t)64)
+
+/*------------------------------------------------------------------------------
+                    OPTIONAL Configuration defines parameters
+------------------------------------------------------------------------------*/
+
+/* Delay for the Codec to be correctly reset */
+#define CODEC_RESET_DELAY                   ((uint8_t)5)
+
 
 /*------------------------------------------------------------------------------
                             OUTPUT DEVICES definition
 ------------------------------------------------------------------------------*/
-/* Alias on existing output devices to adapt for 2 headphones output */
+
+/* Alias on existing output devices to adapt to Birdie discovery board 2 headphones output */
 #define OUTPUT_DEVICE_HEADPHONE1 OUTPUT_DEVICE_HEADPHONE
 #define OUTPUT_DEVICE_HEADPHONE2 OUTPUT_DEVICE_SPEAKER /* Headphone2 is connected to Speaker output of the wm8994 */
 
-/*------------------------------------------------------------------------------
-                           INPUT DEVICES definition
-------------------------------------------------------------------------------*/
-/* MP34DT01TR digital microphone on PCB top side */
-#define INPUT_DEVICE_DIGITAL_MIC       ((uint16_t)0)
-/* Analog microphone input from 3.5 audio jack connector */
-#define INPUT_DEVICE_ANALOG_MIC        INPUT_DEVICE_INPUT_LINE_1
-
 /**
+  * @}
+  */
+
+/** @defgroup STM32F769I_DISCOVERY_AUDIO_Exported_Variables STM32F769I_DISCOVERY_AUDIO Exported Variables
+  * @{
+  */
+ /**
   * @}
   */
 
@@ -291,9 +297,7 @@ void  BSP_AUDIO_OUT_MspDeInit(SAI_HandleTypeDef *hsai, void *Params);
   * @{
   */
 uint8_t BSP_AUDIO_IN_Init(uint32_t AudioFreq, uint32_t BitRes, uint32_t ChnlNbr);
-uint8_t BSP_AUDIO_IN_InitEx(uint16_t InputDevice, uint32_t AudioFreq, uint32_t BitRes, uint32_t ChnlNbr);
 uint8_t BSP_AUDIO_IN_AllocScratch (int32_t *pScratch, uint32_t size);
-uint8_t BSP_AUDIO_IN_GetChannelNumber(void);
 void    BSP_AUDIO_IN_DeInit(void);
 uint8_t BSP_AUDIO_IN_Record(uint16_t *pData, uint32_t Size);
 uint8_t BSP_AUDIO_IN_Stop(void);
@@ -309,7 +313,7 @@ void    BSP_AUDIO_IN_HalfTransfer_CallBack(void);
 
 /* This function is called when an Interrupt due to transfer error on or peripheral
    error occurs. */
-void    BSP_AUDIO_IN_Error_CallBack(void);
+void    BSP_AUDIO_IN_Error_Callback(void);
 
 /* These function can be modified in case the current settings (e.g. DMA stream)
    need to be changed for specific application needs */

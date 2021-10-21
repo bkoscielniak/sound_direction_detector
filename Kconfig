@@ -14,6 +14,7 @@ config SOUND_DIRECTION_DETECTOR_STM32
 	default y
 	bool "Enable needed STM32 modules"
 	select USE_STM32_HAL_CORTEX
+	select USE_STM32_HAL_DFSDM
 	select USE_STM32_HAL_DMA
 	select USE_STM32_HAL_DMA2D
 	select USE_STM32_HAL_DSI
