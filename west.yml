@@ -11,6 +11,10 @@ manifest:
       revision: b0612c97c1401feeb4160add6462c3627fe90fc7
       path: modules/hal/cmsis
 
+    - name: hal_st
+      revision: 575de9d461aa6f430cf62c58a053675377e700f3
+      path: modules/hal/st
+
     - name: hal_stm32
       revision: 5c8275071ec1cf160bfe8c18bbd9330a7d714dc8
       path: modules/hal/stm32
